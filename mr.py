@@ -6,7 +6,7 @@ from sklearn.neighbors import KNeighborsClassifier as KNC
 import csv
 import re
 
-
+# Helper function to read SKLearn KNN model objects 
 def open_pickle(filename):
     f = open(filename, 'rb')
     ob = pickle.load(f)
@@ -24,7 +24,7 @@ class KNNSuccesses(MRJob):
         try:
             var_list = [float(x) for x in line.strip().split(',')][1:]
             true_val = var_list[-1]
-            if (0 > true_val > -1):
+            if (0 > true_val > -1): # Unstandardizes data
                 true_val = 1
             elif (2 > true_val > 1):
                 true_val = 2
